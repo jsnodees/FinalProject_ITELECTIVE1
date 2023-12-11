@@ -205,7 +205,7 @@ namespace elective1_finaldrill
         }
         private bool CheckIfStudentExists(int studentNumber)
         {
-    return studentsdatabase.Any(student => student.studentnumber == studentNumber);
+            return studentsdatabase.Any(student => student.studentnumber == studentNumber);
         }
 
         private void DisplayInformation(int studentNumber)
@@ -222,6 +222,34 @@ namespace elective1_finaldrill
                 Console.WriteLine("Student not found.");
             }
         }
+        
+        private void Update(int editstudentnum, string neweditinfo)
+        {
+            Console.Write($"Enter new {neweditinfo}: ");
+            string neweditedinfo = Console.ReadLine();
+
+            var studentupdating = studentsdatabase.Find(s => s.studentnumber == editstudentnum);
+
+            if (studentupdating != null)
+            {
+                typeof(Student).GetProperty(neweditinfo)?.SetValue(studentupdating, Convert.ChangeType(neweditedinfo, typeof(Student).GetProperty(neweditinfo)?.PropertyType));
+                Console.WriteLine($"{neweditinfo} updated successfully.");
+
+                UpdatedInformation(editstudentnum);
+            }
+        }
+
+        private void UpdatedInformation(int studentnum)
+        {
+            Console.WriteLine("This is now the updated information:");
+            DisplayInformation(studentnum);
+        }
+
+        private void searchinfo()
+        {
+
+        }
+        
 
         class Program_Tester
         {
