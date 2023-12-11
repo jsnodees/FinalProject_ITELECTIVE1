@@ -203,6 +203,25 @@ namespace elective1_finaldrill
                     break;
             }
         }
+        private bool CheckIfStudentExists(int studentNumber)
+        {
+    return studentsdatabase.Any(student => student.studentnumber == studentNumber);
+        }
+
+        private void DisplayInformation(int studentNumber)
+        {
+            Student student = studentsdatabase.FirstOrDefault(s => s.studentnumber == studentNumber);
+
+            if (student != null)
+            {
+                Console.WriteLine($"Here is the existing information about {student.studentnumber}:");
+                Console.WriteLine($"{student.firstname} {student.surname} is a {student.occupation}. His/Her phone number is {student.phonenumber}");
+            }
+            else
+            {
+                Console.WriteLine("Student not found.");
+            }
+        }
 
         class Program_Tester
         {
