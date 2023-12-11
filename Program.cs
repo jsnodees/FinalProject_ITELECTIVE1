@@ -1,15 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalProject
+namespace elective1_finaldrill
 {
-
-
     public class Student
     {
-        public int student { get; set; }
+        public int studentnumber { get; set; }
         public string surname { get; set; }
         public string firstname { get; set; }
         public string occupation { get; set; }
@@ -17,9 +16,7 @@ namespace FinalProject
         public int countrycode { get; set; }
         public int areacode { get; set; }
         public string phonenumber { get; set; }
-
     }
-
     public class StudentMainMenu
     {
         private List<Student> studentsdatabase = new List<Student>();
@@ -132,6 +129,81 @@ namespace FinalProject
             } while (another_entry.ToUpper() == "Y");
         }
 
+        private void editinfo()
+        {
+            Console.Write("Enter student number to edit: ");
+            if (!int.TryParse(Console.ReadLine(), out int EditedStudentNumber))
+            {
+                Console.WriteLine("Invalid input. Please try again.");
+                return;
+            }
+            Console.WriteLine($"Searching for student with number {EditedStudentNumber}...");
+
+            bool ExistingStudent = CheckIfStudentExists(EditedStudentNumber);
+
+            Console.WriteLine($"Student Exists :{ExistingStudent}");
+
+            if (!ExistingStudent)
+            {
+                Console.WriteLine("Student with the provided number does not exist");
+                return;
+            }
+
+            DisplayInformation(EditedStudentNumber);
+
+            Console.WriteLine("Which of the following information do you wish to change : ");
+            Console.WriteLine("[1] Student Number ");
+            Console.WriteLine("[2] Surname ");
+            Console.WriteLine("[3] Gender ");
+            Console.WriteLine("[4] Occupation ");
+            Console.WriteLine("[5] Country Code ");
+            Console.WriteLine("[6] Area Code ");
+            Console.WriteLine("[7] Phone Number");
+            Console.WriteLine("[8] None - Go back to Main Menu ");
+
+            Console.Write("Enter Your Choice : ");
+            string Choices = Console.ReadLine();
+
+            switch (Choices)
+            {
+                case "1":
+                    Update(EditedStudentNumber, "Student Number ");
+                    break;
+
+                case "2":
+                    Update(EditedStudentNumber, "Surname ");
+                    break;
+
+                case "3":
+                    Update(EditedStudentNumber, "Gender ");
+                    break;
+
+                case "4":
+                    Update(EditedStudentNumber, "Occupation ");
+                    break;
+
+                case "5":
+                    Update(EditedStudentNumber, "Country Code ");
+                    break;
+
+                case "6":
+                    Update(EditedStudentNumber, "Area Code ");
+                    break;
+
+                case "7":
+                    Update(EditedStudentNumber, "Phone Number ");
+                    break;
+
+                case "8":
+                    Console.WriteLine("Going back to the Main Menu.");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid Choice. Going back to the Main Menu.")
+                    break;
+            }
+        }
+
         class Program_Tester
         {
             static void Main(string[] args)
@@ -141,3 +213,4 @@ namespace FinalProject
             }
         }
     }
+}
