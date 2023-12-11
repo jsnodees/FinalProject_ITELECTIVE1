@@ -131,4 +131,13 @@ namespace FinalProject
                 studentsdatabase.Add(student);
             } while (another_entry.ToUpper() == "Y");
         }
+
+        class Program_Tester
+        {
+            static void Main(string[] args)
+            {
+                StudentMainMenu studentmain = new StudentMainMenu();
+                studentmain.Start();
+            }
+        }
     }
