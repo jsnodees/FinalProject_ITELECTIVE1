@@ -30,7 +30,7 @@ namespace elective1_finaldrill
                 Console.WriteLine("[1] Search ASEAN phonebook by country");
                 Console.WriteLine("[1] Exit");
 
-                Console.WriteLine("Enter your choice: ");
+                Console.Write("Enter your choice: ");
                 string input = Console.ReadLine();
 
                 switch (input)
@@ -85,7 +85,7 @@ namespace elective1_finaldrill
                 student.occupation = Console.ReadLine();
 
                 Console.Write("Enter gender: ");
-                student.gender = Console.ReadLine();
+                student.gender = Console.ReadLine().ToUpper();
 
                 while (student.gender != "M" && student.gender != "F")
                 {
@@ -105,7 +105,7 @@ namespace elective1_finaldrill
                     continue;
                 }
 
-                Console.Write("Enter country code: ");
+                Console.Write("Enter area code: ");
                 int areaCode;
                 if (int.TryParse(Console.ReadLine(), out areaCode))
                 {
@@ -247,7 +247,72 @@ namespace elective1_finaldrill
 
         private void searchinfo()
         {
+            Console.WriteLine("From which country: ");
 
+            Console.WriteLine("[1] Philippines");
+            Console.WriteLine("[2] Thailand");
+            Console.WriteLine("[3] Singapore");
+            Console.WriteLine("[4] Indonesia");
+            Console.WriteLine("[5] Malaysia");
+            Console.WriteLine("[6] All");
+            Console.WriteLine("[0] No More");
+
+            Console.Write("Enter choice: ");
+            string countrychoice = Console.ReadLine();
+
+            switch (countrychoice)
+            {
+                case "1":
+                    Displayinfobycountrycode(63);
+                    break;
+
+                case "2":
+                    Displayinfobycountrycode(66);
+                    break;
+
+                case "3":
+                    Displayinfobycountrycode(65);
+                    break;
+
+                case "4":
+                    Displayinfobycountrycode(62);
+                    break;
+
+                case "5":
+                    Displayinfobycountrycode(60);
+                    break;
+
+                case "6":
+                    Displayinfobycountrycode(63, 66, 65, 62, 60);
+                    break;
+
+                case "0":
+                    Console.WriteLine("No more countries are to be included in the search");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid input.");
+                    break;
+             }
+        }
+
+        private void Displayinfobycountrycode(params int[] country_code)
+        {
+             var studentscountry = studentsdatabase.Where(student => country_code.Contains(student.countrycode)).ToList();
+             if (studentscountry.Count > 0)
+             {
+                Console.WriteLine($"Here are the students from your chosen country: ");
+
+                foreach (var student in studentscountry)
+                {
+                    Console.WriteLine($"{student.firstname}, {student.surname}, with student number {student.studentnumber}, is a {student.occupation}. His/Her phone number is {student.phonenumber}.");
+
+                }
+             }
+             else
+             {
+                Console.WriteLine("No students found in the chosen countries.");
+             }
         }
         
 
