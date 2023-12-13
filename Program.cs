@@ -199,7 +199,7 @@ namespace elective1_finaldrill
                     break;
 
                 default:
-                    Console.WriteLine("Invalid Choice. Going back to the Main Menu.")
+                    Console.WriteLine("Invalid Choice. Going back to the Main Menu.");
                     break;
             }
         }
@@ -298,10 +298,11 @@ namespace elective1_finaldrill
 
         private void Displayinfobycountrycode(params int[] country_code)
         {
+             var chosencountry = countrynames(country_code);
              var studentscountry = studentsdatabase.Where(student => country_code.Contains(student.countrycode)).ToList();
              if (studentscountry.Count > 0)
              {
-                Console.WriteLine($"Here are the students from your chosen country: ");
+                Console.WriteLine($"Here are the students from {string.Join(", ", chosencountry)}:");
 
                 foreach (var student in studentscountry)
                 {
