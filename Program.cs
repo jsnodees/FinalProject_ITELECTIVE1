@@ -161,37 +161,39 @@ namespace elective1_finaldrill
             Console.WriteLine("[7] Phone Number");
             Console.WriteLine("[8] None - Go back to Main Menu ");
 
-            Console.Write("Enter Your Choice: ");
+            Console.Write("Enter Your Choice : ");
             string Choices = Console.ReadLine();
+
+            Choices = Choices.Trim();
 
             switch (Choices)
             {
                 case "1":
-                    Update(EditedStudentNumber, "Student Number ");
+                    Update(EditedStudentNumber, "studentnumber");
                     break;
 
                 case "2":
-                    Update(EditedStudentNumber, "Surname ");
+                    Update(EditedStudentNumber, "surname");
                     break;
 
                 case "3":
-                    Update(EditedStudentNumber, "Gender ");
+                    Update(EditedStudentNumber, "gender");
                     break;
 
                 case "4":
-                    Update(EditedStudentNumber, "Occupation ");
+                    Update(EditedStudentNumber, "occupation");
                     break;
 
                 case "5":
-                    Update(EditedStudentNumber, "Country Code ");
+                    Update(EditedStudentNumber, "countrycode");
                     break;
 
                 case "6":
-                    Update(EditedStudentNumber, "Area Code ");
+                    Update(EditedStudentNumber, "areacode");
                     break;
 
                 case "7":
-                    Update(EditedStudentNumber, "Phone Number ");
+                    Update(EditedStudentNumber, "phonenumber");
                     break;
 
                 case "8":
