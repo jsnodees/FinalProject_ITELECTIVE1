@@ -314,6 +314,21 @@ namespace elective1_finaldrill
                 Console.WriteLine("No students found in the chosen countries.");
              }
         }
+
+        private string[] countrynames(params int[] countrycodes)
+        {
+
+             Dictionary<int, string> countryname = new Dictionary<int, string>
+             {
+                { 63, "Philippines" },
+                { 66, "Thailand" },
+                { 65, "Singapore" },
+                { 62, "Indonesia" },
+                { 60, "Malaysia" }
+             };
+
+             return countrycodes.Select(code => countryname.TryGetValue(code, out var name) ? name : "Unknown").ToArray();
+        }
         
 
         class Program_Tester
